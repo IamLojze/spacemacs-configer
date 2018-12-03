@@ -32,7 +32,13 @@ values."
    dotspacemacs-configuration-layers
    '(
      javascript
-     go
+     (go :variables
+         go-tab-width 4
+         godoc-at-point-function 'godoc-gogetdoc
+         go-use-gometalinter t
+         go-use-golangci-lint t
+         go-backend 'lsp
+         )
      c-c++
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -335,9 +341,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; 更改显示字体大小 16pt
-  ;;(set-face-attribute 'default nil :height 160)
-
   (require 'go-autocomplete)
 	(require 'auto-complete-config)
 	(ac-config-default)
@@ -349,7 +352,6 @@ you should place your code here."
   (add-hook 'go-mode-hook (lambda ()
                             (set (make-local-variable 'company-backends) '(company-go))
                             (company-mode)))
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
